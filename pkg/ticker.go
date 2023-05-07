@@ -1,4 +1,4 @@
-package main
+package ticker
 
 import (
   "time"
@@ -9,7 +9,7 @@ import (
   fig "github.com/common-nighthawk/go-figure"
 )
 
-func main() {
+func NewPomodoro() {
   ticker1 := time.NewTicker(1*time.Second)
   startTime := time.Now()
   done := make(chan bool)
