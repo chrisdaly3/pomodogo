@@ -8,8 +8,9 @@ import (
 
   fig "github.com/common-nighthawk/go-figure"
 )
-
-func NewPomodoro() {
+// NewPomodoro creates a new Pomodoro timer in the terminal window for time t
+// and shows the session goal g.
+func NewPomodoro(t int, g string) {
   ticker1 := time.NewTicker(1*time.Second)
   startTime := time.Now()
   done := make(chan bool)
@@ -24,13 +25,14 @@ func NewPomodoro() {
           timeElapsed := time.Since(startTime).Truncate(time.Second)
           timeFigure := fig.NewFigure(timeElapsed.String(),"",true)
           timeFigure.Print()
+          fmt.Println(g)
         }
      }
    }()
-
-  time.Sleep(25 * time.Minute)
+  
+  time.Sleep(time.Duration(t) * time.Minute)
   ticker1.Stop()
   done <- true
-  fmt.Println("Pomodoro is done")
+  fmt.Printf("Pomodoro is done, congrats on completing: %v", g)
 }
 
