@@ -11,7 +11,7 @@ import (
 // NewPomodoro creates a new Pomodoro timer in the terminal window for time t
 // and shows the session goal g.
 func NewPomodoro(t int, g string) {
-  ticker1 := time.NewTicker(1*time.Second)
+  ticker1 := time.NewTicker(time.Second)
   startTime := time.Now()
   done := make(chan bool)
 
@@ -22,10 +22,11 @@ func NewPomodoro(t int, g string) {
           return
         case <-ticker1.C:
           cmd := exec.Command("clear");cmd.Stdout=os.Stdout; cmd.Run()
-          timeElapsed := time.Since(startTime).Truncate(time.Second)
-          timeFigure := fig.NewFigure(timeElapsed.String(),"",true)
+          endTime := startTime.Add(time.Duration(t)*time.Minute)
+          timeUntil := time.Until(endTime).Truncate(time.Second)
+          timeFigure := fig.NewFigure(timeUntil.String(),"",true)
           timeFigure.Print()
-          fmt.Println(g)
+          fmt.Println("\n-----\n"+g+"\n-----")
         }
      }
    }()
@@ -33,6 +34,6 @@ func NewPomodoro(t int, g string) {
   time.Sleep(time.Duration(t) * time.Minute)
   ticker1.Stop()
   done <- true
-  fmt.Printf("Pomodoro is done, congrats on completing: %v", g)
+  fmt.Printf("Pomodoro is done, congrats on completing: %q\n", g)
 }
 

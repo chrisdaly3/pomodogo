@@ -12,7 +12,7 @@ import (
 
 func main() {
   // Initialize a new parser object
-  parser := argparse.NewParser("Start", "Creates a new pomodoro timer")
+  parser := argparse.NewParser("Create Timer", "Creates a new pomodoro timer")
   // Create int and string flags, respectively
   timeLength := parser.Int("t", "time", &argparse.Options{Required: false, Help: "Set a time-length for the working session", Default: 25})
   goal := parser.String("g", "goal", &argparse.Options{Required: true, Help: "Set a goal for this pomodoro session", Default: ""})
