@@ -7,7 +7,8 @@ Pomodogo is a CLI tool to track your productivity, relying on the [Pomodoro Tech
 | Flags | Longhand   | Definition                                                |
 | ----- | :--------: | --------------------------------------------------------: |
 | `-t`  | `--time`   |  Set a time-length for the working session. Default: `25` |
-| `-g`  | `--goal`   |  Set a goal for this pomodoro session **Required Field**  |
+| `-g`  | `--goal`   | **Required Field** Set a goal for this pomodoro session   |
+| `-b`  | `--break`  |  Set the time-length for the break session. Default: `5`  |
 
 > Still a work in progress, expect changes.
 > Thanks for looking.
